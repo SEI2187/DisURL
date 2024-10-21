@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "URL to Discord",
+  "version": "1.0",
+  "description": "Sends the current page URL to a Discord webhook",
+  "permissions": ["activeTab", "storage", "notifications", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/disurlicon.png",
+      "24": "assets/disurlicon.png",
+      "32": "assets/disurlicon.png"
+    }
+  },
+  "icons": {
+    "16": "assets/disurlicon.png",
+    "48": "assets/disurlicon.png",
+    "128": "assets/disurlicon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "send_url": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Send URL to Discord"
+    }
+  }
+}

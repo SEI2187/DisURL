@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL to Discord Settings</title>
+  <style>
+    :root {
+      --bg: #303446;
+      --text: #c6d0f5;
+      --surface0: #414559;
+      --surface1: #51576d;
+      --surface2: #626880;
+      --blue: #8caaee;
+      --lavender: #babbf1;
+      --input-bg: #414559;
+    }
+
+    body {
+      width: 350px;
+      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid var(--surface0);
+      background-color: var(--input-bg);
+      color: var(--text);
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      height: 80px;
+      resize: vertical;
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .switch {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      background-color: var(--surface0);
+      border-radius: 34px;
+      margin-right: 10px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: var(--bg);
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--blue);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .switch-label {
+      font-weight: bold;
+    }
+
+    #saveSettings {
+      width: 100%;
+      padding: 10px;
+      background-color: var(--blue);
+      color: var(--bg);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #saveSettings:hover {
+      background-color: var(--lavender);
+    }
+
+    #saveSettings:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+  <h2>Settings</h2>
+  <label for="webhookUrl">Webhook URL:</label>
+  <input type="text" id="webhookUrl">
+  
+  <label for="messageTemplate">Message Template:</label>
+  <textarea id="messageTemplate" placeholder="Use {url} to insert the URL"></textarea>
+  
+  <div class="switch">
+    <label>
+      <input type="checkbox" id="shortenUrl">
+      <span class="slider round"></span>
+    </label>
+    <span class="switch-label">Shorten URL</span>
+  </div>
+  
+  <div class="switch">
+    <label>
+      <input type="checkbox" id="showNotifications">
+      <span class="slider round"></span>
+    </label>
+    <span class="switch-label">Show Notifications</span>
+  </div>
+  
+  <button id="saveSettings">Save Settings</button>
+  <div id="status"></div>
+  <script src="options.js"></script>
+</body>
+</html>

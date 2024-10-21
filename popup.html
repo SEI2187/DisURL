@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL to Discord</title>
+  <style>
+    :root {
+      /* Dark mode colors */
+      --bg: #1e1e2e;
+      --text: #cdd6f4;
+      --surface0: #313244;
+      --surface1: #45475a;
+      --button-bg: #313244;
+      --button-hover: #45475a;
+      --preview-bg: #313244;
+      --blue: #89b4fa;
+      --lavender: #b4befe;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 300px;
+      height: 400px;
+      margin: 0;
+      padding: 15px;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: var(--button-bg);
+      color: var(--text);
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #urlPreview {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      word-break: break-all;
+      font-size: 0.9em;
+      background-color: var(--preview-bg);
+    }
+
+    #settings {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid var(--surface0);
+      background-color: var(--surface0);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      height: 60px;
+      resize: vertical;
+    }
+
+    .switch {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      background-color: var(--surface0);
+      border-radius: 34px;
+      margin-right: 10px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--bg);
+      border-radius: 50%;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: var(--blue);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .switch-label {
+      font-weight: bold;
+    }
+
+    #donate {
+      background-color: var(--lavender);
+      color: var(--bg);
+    }
+
+    #donate:hover {
+      background-color: var(--blue);
+    }
+
+    #mainContent, #settingsContent {
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    #settingsContent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg);
+      padding: 15px;
+      box-sizing: border-box;
+      opacity: 0;
+      pointer-events: none;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .visible {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="mainContent">
+    <div id="urlPreview"></div>
+    <button id="sendUrl">Send URL to Discord</button>
+    <button id="copyUrl">Copy URL</button>
+    <button id="toggleSettings">Settings</button>
+    <button id="donate">Donate</button>
+    <div id="status"></div>
+  </div>
+  
+  <div id="settingsContent">
+    <h3>Settings</h3>
+    <label for="webhookUrl">Webhook URL:</label>
+    <input type="text" id="webhookUrl">
+    
+    <label for="messageTemplate">Message Template:</label>
+    <textarea id="messageTemplate" placeholder="Use {url} to insert the URL"></textarea>
+    
+    <div class="switch">
+      <label>
+        <input type="checkbox" id="shortenUrl">
+        <span class="slider round"></span>
+      </label>
+      <span class="switch-label">Shorten URL</span>
+    </div>
+    
+    <div class="switch">
+      <label>
+        <input type="checkbox" id="showNotifications">
+        <span class="slider round"></span>
+      </label>
+      <span class="switch-label">Show Notifications</span>
+    </div>
+    
+    <button id="saveSettings">Save Settings</button>
+    <button id="backToMain">Back</button>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
